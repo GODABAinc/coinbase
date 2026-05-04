@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FiSearch, FiGlobe, FiMenu, FiX, FiChevronDown } from 'react-icons/fi';
+import { FiSearch, FiGlobe, FiMenu, FiX, FiChevronDown, FiUser } from 'react-icons/fi';
 import Button from '../common/Button';
+import { useAuth } from '../../context/AuthContext';
 
 const Navbar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -9,6 +10,7 @@ const Navbar = () => {
     const [activeDropdown, setActiveDropdown] = useState(null);
     const location = useLocation();
     const dropdownRef = useRef(null);
+    const { user } = useAuth();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -161,13 +163,25 @@ const Navbar = () => {
                             </button>
                             <Link
                                 to="/signin"
-                                className="hidden sm:inline-flex text-[13px] font-semibold text-cb-dark hover:text-cb-blue transition-colors px-3 py-2"
+                                className={`hidden sm:inline-flex text-[13px] font-semibold text-cb-dark hover:text-cb-blue transition-colors px-3 py-2 ${user ? 'hidden' : ''}`}
                             >
                                 Sign in
                             </Link>
-                            <Button to="/signup" size="sm">
-                                Sign up
-                            </Button>
+                            {user ? (
+                                <Link
+                                    to="/profile"
+                                    className="inline-flex items-center gap-2 px-3 py-2 text-[13px] font-semibold text-cb-dark hover:text-cb-blue transition-colors rounded-lg hover:bg-cb-gray-50"
+                                >
+                                    <div className="w-7 h-7 rounded-full bg-cb-blue text-white flex items-center justify-center text-xs font-bold uppercase">
+                                        {user.name?.charAt(0)}
+                                    </div>
+                                    <span className="hidden sm:inline">Profile</span>
+                                </Link>
+                            ) : (
+                                <Button to="/signup" size="sm">
+                                    Sign up
+                                </Button>
+                            )}
 
                             {/* Mobile Menu Toggle */}
                             <button
@@ -235,12 +249,20 @@ const Navbar = () => {
                         </div>
 
                         <div className="mt-6 pt-6 border-t border-cb-gray-100 flex flex-col gap-3">
-                            <Button to="/signin" variant="outline" fullWidth onClick={() => setMobileMenuOpen(false)}>
-                                Sign in
-                            </Button>
-                            <Button to="/signup" fullWidth onClick={() => setMobileMenuOpen(false)}>
-                                Sign up
-                            </Button>
+                            {user ? (
+                                <Button to="/profile" fullWidth onClick={() => setMobileMenuOpen(false)}>
+                                    My Profile
+                                </Button>
+                            ) : (
+                                <>
+                                    <Button to="/signin" variant="outline" fullWidth onClick={() => setMobileMenuOpen(false)}>
+                                        Sign in
+                                    </Button>
+                                    <Button to="/signup" fullWidth onClick={() => setMobileMenuOpen(false)}>
+                                        Sign up
+                                    </Button>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>

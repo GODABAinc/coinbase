@@ -6,6 +6,9 @@ import AssetDetail from './pages/AssetDetail';
 import Learn from './pages/Learn';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import Profile from './pages/Profile';
+import AddCrypto from './pages/AddCrypto';
+import ProtectedRoute from './components/auth/ProtectedRoute';
 
 function App() {
   return (
@@ -16,6 +19,22 @@ function App() {
       <Route path="/learn" element={<Learn />} />
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/add-crypto"
+        element={
+          <ProtectedRoute>
+            <AddCrypto />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }

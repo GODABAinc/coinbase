@@ -1,101 +1,75 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/fcRde9Vj)
-# Coinbase Clone - React & Tailwind CSS Assignment
+# Coinbase Clone — Frontend (Integrated)
 
-## 📋 Overview
+React frontend for the Coinbase clone, integrated with the backend API for authentication and crypto data.
 
-In this assignment, you will build a full clone of the [Coinbase](https://www.coinbase.com/) website using **React.js** and **Tailwind CSS**. This project will help you practice component-based architecture, client-side routing, responsive design, and modern CSS utilities.
+## Tech Stack
 
----
+- React 19 + Vite
+- React Router DOM
+- Tailwind CSS
 
-## 🚀 Getting Started
+## Setup (Local Development)
 
-After accepting this assignment, follow these steps:
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-### 1. Clone Your Repository
+2. Make sure your backend is running locally (default: `http://localhost:5000`).
 
-```bash
-git clone <your-repository-url>
-```
+3. The `.env` file already points to `http://localhost:5000`. Edit if your backend runs elsewhere.
 
-### 2. Install Dependencies
+4. Run the dev server:
+   ```bash
+   npm run dev
+   ```
 
-```bash
-npm install
-```
+5. Open http://localhost:5173 in your browser.
 
-### 3. Start the Development Server
+## Deployment
 
-```bash
-npm run dev
-```
+### Set the backend URL first
 
-The app will be available at `http://localhost:5173`
+Before deploying, you'll set `VITE_API_URL` to your deployed backend URL (e.g., your Render URL).
 
----
+### Deploy to Vercel (recommended, free)
 
-### Technical Requirements
+1. Push this repo to GitHub.
+2. Go to [vercel.com](https://vercel.com) and import the repo.
+3. Framework Preset: **Vite** (auto-detected).
+4. Add environment variable:
+   - Name: `VITE_API_URL`
+   - Value: your Render backend URL (e.g., `https://your-backend.onrender.com`)
+5. Click **Deploy**.
 
-- [ ] Use **React Router** for client-side navigation
-- [ ] Use **functional components** with React hooks
-- [ ] Create **reusable components** (Button, Card, CryptoRow, etc.)
-- [ ] Use **Tailwind CSS** for all styling (no external CSS frameworks)
-- [ ] Implement **responsive design** (mobile, tablet, desktop)
-- [ ] Use **React state management** (useState, useContext, or similar)
-- [ ] Follow **proper file structure** and naming conventions
-- [ ] Write **clean, readable code** with appropriate comments
+### Or deploy to Netlify (also free)
 
----
+1. Push to GitHub.
+2. Go to [netlify.com](https://netlify.com), import the repo.
+3. Build command: `npm run build`
+4. Publish directory: `dist`
+5. Environment variables: `VITE_API_URL=https://your-backend.onrender.com`
+6. Deploy.
 
-## 📁 Project Structure
+## What's New
 
-```
-src/
-├── assets/          # Images, icons, and other static files
-├── components/      # Reusable React components
-│   ├── common/      # Shared components (Button, Card, Input, etc.)
-│   ├── layout/      # Layout components (Navbar, Footer, Sidebar)
-│   └── crypto/      # Crypto-specific components (CryptoCard, PriceChart)
-├── pages/           # Page components
-│   ├── Home.jsx
-│   ├── Explore.jsx
-│   ├── AssetDetail.jsx
-│   ├── Learn.jsx
-│   ├── SignIn.jsx
-│   └── SignUp.jsx
-├── data/            # Mock data and constants
-├── hooks/           # Custom React hooks (optional)
-├── App.jsx          # Main application with routing
-├── App.css          # Global styles (if needed)
-├── main.jsx         # Application entry point
-└── index.css        # Tailwind CSS imports
-```
+- `src/api/api.js` — central wrapper for all backend calls
+- `src/context/AuthContext.jsx` — global auth state
+- `src/components/auth/ProtectedRoute.jsx` — route protection
+- `src/pages/Profile.jsx` — protected profile page
+- `src/pages/AddCrypto.jsx` — protected add-crypto form
+- `SignIn.jsx`, `SignUp.jsx`, `Explore.jsx` — wired to backend
+- Navbar shows Profile button when logged in
 
----
+## Routes
 
-## 🎨 Design Reference
-
-Visit [coinbase.com](https://www.coinbase.com/) 
-
-- Overall layout and structure across all pages
-- Consistent color scheme and typography
-- Navigation flow between pages
-- Responsive behavior on all screen sizes
-- User interface patterns and interactions
-
----
-
-## 💡 Helpful Resources
-
-- [React Documentation](https://react.dev/)
-- [React Router Documentation](https://reactrouter.com/)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Vite Documentation](https://vitejs.dev/)
-- [Heroicons](https://heroicons.com/) - Free SVG icons
-- [reacticons](https://react-icons.github.io/react-icons/) - Free SVG icons
-
----
-
-## 🌐 Deployment on Netlify
-
-You must deploy your completed project on **Netlify**.
-# coinbase
+| Route          | Access    | Description                           |
+| -------------- | --------- | ------------------------------------- |
+| `/`            | Public    | Home page                             |
+| `/explore`     | Public    | Browse cryptos (live from backend)    |
+| `/signin`      | Public    | Login form                            |
+| `/signup`      | Public    | Registration form                     |
+| `/profile`     | Protected | User profile (requires login)         |
+| `/add-crypto`  | Protected | Add new cryptocurrency form           |
+| `/asset/:id`   | Public    | Asset detail page (uses mock data)    |
+| `/learn`       | Public    | Learn page                            |
