@@ -1,3 +1,11 @@
+> **⚠️ Educational Project / School Assignment**
+>
+> This repository is a learning exercise built as a clone of the Coinbase UI
+> for academic purposes. It is **not affiliated with, endorsed by, or
+> sponsored by Coinbase, Inc.** All trademarks belong to their respective
+> owners. No real cryptocurrency transactions occur on this site.
+
+
 # Coinbase Clone — Frontend (Integrated)
 
 React frontend for the Coinbase clone, integrated with the backend API for authentication and crypto data.
@@ -73,3 +81,12 @@ Before deploying, you'll set `VITE_API_URL` to your deployed backend URL (e.g., 
 | `/add-crypto`  | Protected | Add new cryptocurrency form           |
 | `/asset/:id`   | Public    | Asset detail page (uses mock data)    |
 | `/learn`       | Public    | Learn page                            |
+
+
+> **⚠️ Educational Project / School Assignment**
+>
+> This repository is a learning exercise built as a clone of the Coinbase UI
+> for academic purposes. It is **not affiliated with, endorsed by, or
+> sponsored by Coinbase, Inc.** All trademarks belong to their respective
+> owners. No real cryptocurrency transactions occur on this site.
+
